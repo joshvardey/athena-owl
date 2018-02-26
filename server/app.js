@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
 
-const Strategy = new Strategy(
+const strategy = new Strategy(
   {
     secretOrKey: config.jwtSecret,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()

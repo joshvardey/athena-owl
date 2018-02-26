@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("./models/user");
+const User = require("../models/user");
 const jwt = require("jwt-simple");
 const passport = require("passport");
 const config = require("../config");
@@ -12,11 +12,11 @@ router.post("/signup", (req, res, next) => {
     username,
     name
   });
-});
 
-User.register(user, password, err => {
-  if (err) return next(err);
-  res.json({ succes: true });
+  User.register(user, password, err => {
+    if (err) return next(err);
+    res.json({ success: true });
+  });
 });
 
 const authenticate = User.authenticate();
