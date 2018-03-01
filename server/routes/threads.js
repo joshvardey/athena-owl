@@ -6,7 +6,7 @@ const passport = require("passport");
 const config = require("../config");
 const Dab = require("../models/dab");
 
-// Get a thread
+// Get threads
 
 router.get("/", (req, res, next) => {
   res.json("/threads");
@@ -43,10 +43,10 @@ router.get("/:threadId", (req, res, next) => {
   });
 });
 
-// post dabFor on thread
+// post dab on thread
 
 router.post(
-  "/:threadId/dabs",
+  "/:threadid/dabs",
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
     const { link, description, opinion } = req.body;
@@ -59,21 +59,24 @@ router.post(
     });
 
     newDab.save((err, dab) => {
-      if (err) return err;
-      if (dab.opinion) {
-        Thread.findByIdAndUpdate(
-          req.params.threadId,
-          { $push: { dabsFor: dab._id } },
-          (err, thread) => {
-            if (err) {
-              return err;
-            }
-            res.json(dab);
-          }
-        );
+      if (err) {
+        return err;
       }
+      Thread.findByIdAndUpdate(
+        req.params.threadId,
+        { $push: { dabs: dab._id } },
+        (err, thread) => {
+          if (err) {
+            return err;
+          }
+          res.json(dab);
+        }
+      );
     });
   }
 );
+
+// delete dabs
+// delete thread
 
 module.exports = router;
