@@ -1,9 +1,10 @@
 
 <template>
   <div class="container">
-    <h1 class="title">Can you get the secret?</h1>
+    <h1 class="title">Homepage</h1>
 
-    <router-link to="/profile">Go to secret page</router-link>
+    <router-link to="/profile">See if logged in</router-link><br>
+    <router-link to="/thread">Go to thread skeleton</router-link>
 
   </div>
 </template>

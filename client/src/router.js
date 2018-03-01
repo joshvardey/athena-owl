@@ -5,6 +5,7 @@ import About from "./views/About.vue";
 import Signup from "./views/Signup.vue";
 import Login from "./views/Login.vue";
 import Profile from "./views/Profile.vue";
+import Thread from "./views/Thread.vue";
 
 Vue.use(Router);
 
@@ -35,6 +36,10 @@ export default new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/thread",
+      component: Thread
     }
   ]
 });

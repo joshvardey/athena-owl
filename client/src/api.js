@@ -40,6 +40,38 @@ export default {
       .catch(errHandler);
   },
 
+  getThreads() {
+    return service
+      .get("/threads")
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  postThread() {
+    return service
+      .post("/threads", {
+        creator,
+        title,
+        tag
+      })
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getOneThread(threadId) {
+    return service
+      .get("/threads/" + threadId)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  postDab(threadId, dabData) {
+    return service
+      .post("/threads/" + threadId + "/dabs/", dabData)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   logout() {
     delete axios.defaults.headers.common["Authorization"];
     localStorage.removeItem("user");

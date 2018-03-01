@@ -9,7 +9,7 @@
       <div class="container">
         <div class="content has-text-centered">
           <p>
-            <strong>Tweeter</strong> by Ironhack WebDev Cohort (c) 2018</p>
+            <strong>Athena</strong> by Josh (c) 2018</p>
         </div>
       </div>
     </footer>

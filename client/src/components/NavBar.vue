@@ -2,7 +2,7 @@
 <nav class="navbar is-transparent">
   <div class="navbar-brand">
     <router-link class="navbar-item" to="/">
-      <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+      <img src="../assets/little-owl.jpg" alt="littleOwl" width="28" height="28">
     </router-link>
     <div
       class="navbar-burger burger"
