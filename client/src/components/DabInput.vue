@@ -24,16 +24,15 @@
 export default {
   data() {
     return {
-      link: "",
-      opinion: Boolean
+      link: ""
     };
   },
   methods: {
     emitAgree() {
-      this.$emit("dab-is-created", { opinion: true });
+      this.$emit("dab-is-created", { link: this.link, opinion: true });
     },
     emitDisagree() {
-      this.$emit("dab-is-created", { opinion: false });
+      this.$emit("dab-is-created", { link: this.link, opinion: false });
     }
   }
 };

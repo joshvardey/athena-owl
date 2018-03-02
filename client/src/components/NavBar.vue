@@ -2,7 +2,7 @@
 <nav class="navbar is-transparent">
   <div class="navbar-brand">
     <router-link class="navbar-item" to="/">
-      <img src="../assets/little-owl.jpg" alt="littleOwl" width="28" height="28">
+      <img src="../assets/athena-badge.jpg" alt="littleOwl" width="25" height="25">
     </router-link>
     <div
       class="navbar-burger burger"
@@ -47,7 +47,7 @@
         </div>
         <div class="field is-grouped" v-else>
           <p class="control">
-            Hi {{ $root.user.name }}
+            <!-- Hi {{ $root.user.name }} -->
           </p>
           <p class="control">
             <a

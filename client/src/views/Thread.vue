@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <h1 class="title">Thread timeline</h1>
-    <DabInput :dab-is-created.sync="dabInput"></DabInput>
+    <h1 class="title" style="text-align:center;">{{thread.title}}</h1>
+    <DabInput @dab-is-created="dabInput"></DabInput>
     <br>
-    <Timeline>
-      <Dab v-for="dab in dabs" :dab="dab" :key="dab._id"/>
+    <Timeline v-if="thread">
+      <Dab v-for="dab in thread.dabs" :dab="dab" :key="dab._id"/>
     </Timeline>
   </div>
 </template>
@@ -17,23 +17,23 @@ import api from "../api";
 export default {
   data() {
     return {
-      dabs: [],
-      thread: []
+      thread: {}
     };
   },
   created() {
-    api.getOneThread(this.thread.id).then(res => {
+    api.getOneThread(this.$route.params.id).then(thread => {
       this.thread = thread;
     });
   },
   components: { Timeline, DabInput, Dab },
   methods: {
-    dabInput() {
-      api.postDab(this.thread._id, {
-        link: this.link,
-        description: this.description,
-        opinion: this.opinion
-      });
+    dabInput(dab) {
+      api
+        .postDab(this.thread._id, dab)
+        .then(dab => this.thread.dabs.unshift(dab))
+        .catch(err => {
+          this.error = err;
+        });
     }
   }
 };

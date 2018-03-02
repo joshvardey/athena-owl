@@ -47,13 +47,9 @@ export default {
       .catch(errHandler);
   },
 
-  postThread() {
+  postThread(data) {
     return service
-      .post("/threads", {
-        creator,
-        title,
-        tag
-      })
+      .post("/threads", data)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -67,7 +63,7 @@ export default {
 
   postDab(threadId, dabData) {
     return service
-      .post("/threads/" + threadId + "/dabs/", dabData)
+      .post("/threads/" + threadId + "/dabs", dabData)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -81,7 +77,7 @@ export default {
     const userData = localStorage.getItem("user");
     if (!userData) return false;
     const user = JSON.parse(userData);
-    if (user.token && user.name) {
+    if (user.token) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + user.token;
       return user;
     }

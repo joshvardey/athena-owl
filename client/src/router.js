@@ -38,7 +38,7 @@ export default new Router({
       }
     },
     {
-      path: "/thread",
+      path: "/thread/:id",
       component: Thread
     }
   ]
