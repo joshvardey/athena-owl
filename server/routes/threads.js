@@ -55,6 +55,7 @@ router.post(
 
     scrape(link)
       .then(metadata => {
+        console.log("hey!");
         const extractedData = extractMetadata(metadata);
         const newDab = new Dab({
           link,
@@ -80,6 +81,7 @@ router.post(
         });
       })
       .catch(err => {
+        console.log("err!");
         next(err);
       });
   }

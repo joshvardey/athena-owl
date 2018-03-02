@@ -13,21 +13,24 @@ router.post(
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
     const user = req.user.id;
-    const dabId = req.params.id;
+    const dabId = req.params.dabid;
     const opinion = req.body;
-    Dab.findById(dabId, dab => {
-      const dabCreator = dab.creator;
-    });
-    const vote = new vote({
-      dab,
-      user,
-      dabCreator
-    });
-    vote.save((err, vote) => {
+    Dab.findById(dabId, (err, dab) => {
       if (err) {
-        return err;
+        return next(err);
       }
-      res.json(vote);
+      const dabCreator = dab.creator;
+      const vote = new Vote({
+        dab: dab._id,
+        user,
+        dabCreator: dabCreator
+      });
+      vote.save((err, vote) => {
+        if (err) {
+          return next(err);
+        }
+        res.json(vote);
+      });
     });
   }
 );

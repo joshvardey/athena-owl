@@ -50,8 +50,8 @@ const strategy = new Strategy(
 passport.use(strategy);
 // app.use("/", require("./routes/index"));
 app.use("/api", require("./routes/auth"));
-app.use("/threads", require("./routes/threads"));
-app.use("/vote", require("./routes/votes"));
+app.use("/api/threads", require("./routes/threads"));
+app.use("/api/vote", require("./routes/votes"));
 
 app.get(
   "/api/secret",
