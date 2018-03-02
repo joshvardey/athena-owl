@@ -5,6 +5,7 @@ const jwt = require("jwt-simple");
 const passport = require("passport");
 const config = require("../config");
 const Dab = require("../models/dab");
+const scrape = require("html-metadata");
 
 // Get threads
 
@@ -51,30 +52,56 @@ router.post(
   (req, res, next) => {
     const { link, description, opinion } = req.body;
     const creator = req.user.id;
-    const newDab = new Dab({
-      link,
-      description,
-      opinion,
-      creator
-    });
 
-    newDab.save((err, dab) => {
-      if (err) {
-        return err;
-      }
-      Thread.findByIdAndUpdate(
-        req.params.threadId,
-        { $push: { dabs: dab._id } },
-        (err, thread) => {
+    scrape(link)
+      .then(metadata => {
+        const extractedData = extractMetadata(metadata);
+        const newDab = new Dab({
+          link,
+          opinion,
+          creator,
+          ...extractedData
+        });
+
+        newDab.save((err, dab) => {
           if (err) {
             return err;
           }
-          res.json(dab);
-        }
-      );
-    });
+          Thread.findByIdAndUpdate(
+            req.params.threadId,
+            { $push: { dabs: dab._id } },
+            (err, thread) => {
+              if (err) {
+                return err;
+              }
+              res.json(dab);
+            }
+          );
+        });
+      })
+      .catch(err => {
+        next(err);
+      });
   }
 );
+
+function extractMetadata(data) {
+  const ret = {};
+  ret.title = data.general.title;
+  ret.description = data.general.description;
+  ret.lang = data.general.lang;
+
+  if (data.openGraph) {
+    const g = data.openGraph;
+    ret.title = g.title || req.title;
+    ret.description = g.description || req.description;
+    ret.description = g.description || req.description;
+    ret.image = g.image && g.image.url;
+    ret.sourceName = g.site_name;
+  }
+
+  return ret;
+}
 
 // delete dabs
 // delete thread
