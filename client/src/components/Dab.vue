@@ -1,5 +1,5 @@
 <template>
-  <div class="timeline-item is-warning">
+  <div class="timeline-item is-warning" :class="{'timeline-is-left':dab.opinion}">
       <div class="timeline-marker is-warning is-image is-32x32">
         <img src="../assets/little-owl.jpg" {{dab.creator.picture}}>
       </div>

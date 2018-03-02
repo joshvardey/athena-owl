@@ -17,7 +17,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    dab: Object
+  }
+};
 </script>
 
 <style>

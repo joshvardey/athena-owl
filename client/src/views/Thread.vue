@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <h1 class="title">Thread timeline</h1>
-    <DabInput/>
+    <DabInput :dab-is-created.sync="dabInput"></DabInput>
+    <br>
     <Timeline>
       <Dab v-for="dab in dabs" :dab="dab" :key="dab._id"/>
     </Timeline>
@@ -21,7 +22,7 @@ export default {
     };
   },
   created() {
-    getOneThread(this.thread.id).then(res => {
+    api.getOneThread(this.thread.id).then(res => {
       this.thread = thread;
     });
   },
