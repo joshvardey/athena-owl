@@ -25,7 +25,7 @@ router.post(
     const threadInfo = new Thread({
       creator: req.user.id,
       title: req.body.title,
-      tag: req.body.tag
+      tags: req.body.tags
     });
     threadInfo.save((err, threadInfo) => {
       if (err) {
@@ -41,7 +41,7 @@ router.post(
 router.get("/:threadId", (req, res, next) => {
   Thread.findById(req.params.threadId)
     .populate("dabs")
-    .then(err, threads => {
+    .then(threads => {
       res.json(threads);
     })
     .catch(err => next(err));
@@ -82,7 +82,6 @@ router.post(
         });
       })
       .catch(err => {
-        console.log("err!");
         next(err);
       });
   }

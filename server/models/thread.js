@@ -5,7 +5,7 @@ const threadSchema = new Schema({
   title: String,
   dabs: [{ type: Schema.Types.ObjectId, ref: "Dab" }],
   creator: { type: Schema.Types.ObjectId, ref: "User" },
-  tags: [{ type: String, enum: ["Politics", "Science", "Culture", "Religion"] }]
+  tags: { type: Array }
 });
 
 module.exports = mongoose.model("Thread", threadSchema);
