@@ -21,8 +21,10 @@
                 :data="filteredTags"
                 autocomplete
                 :allowNew="allowNew"
+                field="tags"
                 icon="label"
                 placeholder="Add a tag"
+                @typing="getFilteredTags"
                 rounded>
             </b-taginput>
         </b-field>
@@ -47,8 +49,17 @@ export default {
     };
   },
   methods: {
+    getFilteredTags(text) {
+      this.filteredTags = data.filter(option => {
+        return (
+          option
+            .toString()
+            .toLowerCase()
+            .indexOf(text.toLowerCase()) >= 0
+        );
+      });
+    },
     postThread() {
-      console.log("hi");
       this.error = null;
       api
         .postThread({
