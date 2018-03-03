@@ -31,8 +31,7 @@
           <p class="control">
             <router-link
               class="navbar-item" to="/login"
-              @click.native="isActive = false"
-            >
+              @click.native="isActive = false">
               Login
             </router-link>
           </p>

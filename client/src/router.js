@@ -6,6 +6,7 @@ import Signup from "./views/Signup.vue";
 import Login from "./views/Login.vue";
 import Profile from "./views/Profile.vue";
 import Thread from "./views/Thread.vue";
+import SeeAll from "./views/SeeAll.vue";
 
 Vue.use(Router);
 
@@ -40,6 +41,10 @@ export default new Router({
     {
       path: "/thread/:id",
       component: Thread
+    },
+    {
+      path: "/all-threads",
+      component: SeeAll
     }
   ]
 });
