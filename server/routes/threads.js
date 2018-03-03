@@ -10,7 +10,10 @@ const scrape = require("html-metadata");
 // Get threads
 
 router.get("/", (req, res, next) => {
-  res.json("/threads");
+  Thread.find({}, (err, threads) => {
+    if (err) return next(err);
+    res.json(threads);
+  });
 });
 
 // Create a new thread
@@ -36,18 +39,18 @@ router.post(
 // get specific thread
 
 router.get("/:threadId", (req, res, next) => {
-  Thread.findById(req.params.threadId, (err, thread) => {
-    if (err) {
-      return err;
-    }
-    res.json(thread);
-  });
+  Thread.findById(req.params.threadId)
+    .populate("dabs")
+    .then(err, threads => {
+      res.json(threads);
+    })
+    .catch(err => next(err));
 });
 
 // post dab on thread
 
 router.post(
-  "/:threadid/dabs",
+  "/:threadId/dabs",
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
     const { link, description, opinion } = req.body;
@@ -55,7 +58,6 @@ router.post(
 
     scrape(link)
       .then(metadata => {
-        console.log("hey!");
         const extractedData = extractMetadata(metadata);
         const newDab = new Dab({
           link,
@@ -63,7 +65,6 @@ router.post(
           creator,
           ...extractedData
         });
-
         newDab.save((err, dab) => {
           if (err) {
             return err;

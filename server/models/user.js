@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   userName: String,
-  name: String
-  // picture: String
+  name: String,
+  picture: String
 });
 
 userSchema.plugin(passportLocalMongoose);
