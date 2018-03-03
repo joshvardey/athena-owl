@@ -1,7 +1,7 @@
 <template>
   <div class="timeline-item is-warning" :class="{'timeline-is-left': dab.opinion}">
       <div class="timeline-marker is-warning is-image is-32x32">
-        <img src="../assets/little-owl.jpg">
+        <img :src="$root.user.picture">
       </div>
       <div class="timeline-content">
         <p class="heading">{{dab.title}}</p>
@@ -13,13 +13,13 @@
 
 
 <script>
+import api from "../api";
 export default {
   data() {
-    dab: dab;
+    return {};
   },
   props: {
     dab: Object
-  },
-  computed: {}
+  }
 };
 </script>
