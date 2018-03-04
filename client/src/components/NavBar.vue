@@ -23,6 +23,12 @@
       >
         About
       </router-link>
+      <router-link
+        class="navbar-item" to="/all-threads"
+        @click.native="isActive = false"
+      >
+        See all
+      </router-link>
     </div>
 
     <div class="navbar-end">
