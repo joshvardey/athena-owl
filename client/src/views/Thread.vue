@@ -1,6 +1,19 @@
 <template>
   <div class="container">
-    <h1 class="title" style="text-align:center;">{{thread.title}}</h1>
+    <section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title" style="text-align:center;">
+        {{thread.title}}
+      </h1>
+      <br>
+      <h2 class="subtitle" style="text-align:center;">
+        {{thread.tags}}
+      </h2>
+    </div>
+  </div>
+</section>
+    <h1 class="title" ></h1>
     <DabInput @dab-is-created="dabInput"></DabInput>
     <br>
     <Timeline v-if="thread">

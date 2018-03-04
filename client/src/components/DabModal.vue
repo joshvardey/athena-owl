@@ -10,8 +10,16 @@
       <!-- Content ... -->
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button">Cancel</button>
+      <button class="button is-success">Save changes<b-icon
+                icon="arrow-up-bold-circle-outline"
+                size="is-small"
+                type="is-primary">
+            </b-icon></button>
+      <button class="button">Cancel<b-icon
+                icon="arrow-down-bold-circle-outline"
+                size="is-small">
+            </b-icon></button>
+      
     </footer>
   </div>
 </div>

@@ -6,7 +6,15 @@
       <div class="timeline-content">
         <p class="heading">{{dab.title}}</p>
         <p>{{dab.description}}</p>
-        <p>{{dab.sourceName}}</p><a target="_blank" :href="dab.link">Link</a>
+        <p><b-icon
+                icon="arrow-up-bold-circle-outline"
+                size="is-small"
+                type="is-primary">
+            </b-icon><b-icon
+                icon="arrow-down-bold-circle-outline"
+                size="is-small">
+            </b-icon></p><a target="_blank" :href="dab.link">{{dab.sourceName}}</a>
+        
       </div>
     </div>
 </template>

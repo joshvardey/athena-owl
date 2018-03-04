@@ -30,9 +30,11 @@ export default {
   methods: {
     emitAgree() {
       this.$emit("dab-is-created", { link: this.link, opinion: true });
+      this.link = "";
     },
     emitDisagree() {
       this.$emit("dab-is-created", { link: this.link, opinion: false });
+      this.link = "";
     }
   }
 };
