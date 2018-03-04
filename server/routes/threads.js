@@ -101,7 +101,6 @@ function extractMetadata(data) {
     ret.image = g.image && g.image.url;
     ret.sourceName = g.site_name;
   }
-
   return ret;
 }
 
