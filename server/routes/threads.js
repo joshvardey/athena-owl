@@ -5,6 +5,7 @@ const jwt = require("jwt-simple");
 const passport = require("passport");
 const config = require("../config");
 const Dab = require("../models/dab");
+const Vote = require("../models/vote");
 const scrape = require("html-metadata");
 
 // Get threads
@@ -25,6 +26,7 @@ router.post(
     const threadInfo = new Thread({
       creator: req.user.id,
       title: req.body.title,
+      description: req.body.description,
       tags: req.body.tags
     });
     threadInfo.save((err, threadInfo) => {
@@ -41,8 +43,17 @@ router.post(
 router.get("/:threadId", (req, res, next) => {
   Thread.findById(req.params.threadId)
     .populate("dabs")
-    .then(threads => {
-      res.json(threads);
+    .then(thread => {
+      thread = thread.toObject();
+      return Promise.all(
+        thread.dabs.map(dab => {
+          return Vote.find({ dab: dab._id }).then(votes => {
+            dab.votes = votes;
+          });
+        })
+      ).then(() => {
+        res.json(thread);
+      });
     })
     .catch(err => next(err));
 });
