@@ -7,8 +7,8 @@
         {{thread.title}}
       </h1>
       <br>
-      <h2 class="subtitle" style="text-align:center;">
-        {{thread.tags}}
+      <h2 class="subtitle" style="text-align:center;" >
+       {{thread.description}}
       </h2>
     </div>
   </div>
@@ -17,7 +17,7 @@
     <DabInput @dab-is-created="dabInput"></DabInput>
     <br>
     <Timeline v-if="thread">
-      <Dab v-for="dab in thread.dabs" :dab="dab" :key="dab._id"/>
+      <Dab v-for="dab in thread.dabs" :dab="dab" :key="dab._id" @voted="voteAction"/>
     </Timeline>
   </div>
 </template>
@@ -47,6 +47,11 @@ export default {
         .catch(err => {
           this.error = err;
         });
+    },
+    voteAction(vote) {
+      api.postVote(vote).catch(err => {
+        this.error = err;
+      });
     }
   }
 };

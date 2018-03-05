@@ -7,7 +7,6 @@
       <button class="delete" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
-      <!-- Content ... -->
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success">Save changes<b-icon
@@ -27,9 +26,7 @@
 
 <script>
 export default {
-  data() {
-    return {};
-  },
+  props: {link = dab.link},
   methods: {}
 };
 </script>

@@ -52,7 +52,7 @@
         </div>
         <div class="field is-grouped" v-else>
           <p class="control">
-            <!-- Hi {{ $root.user.name }} -->
+            <router-link class="navbar-item" to="/profile">Profile</router-link>
           </p>
           <p class="control">
             <a

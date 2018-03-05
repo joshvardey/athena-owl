@@ -1,23 +1,33 @@
 <template>
-<section>
-  <div class= "container">
-    <b-field grouped group-multiline position="is-centered">
-      <p class="control">
-                <button @click.prevent="emitAgree" class="button is-warning">
-                  <span></span>
-            <b-icon icon="thumb-up-outline"></b-icon>
-            <span></span>
-        </button>
-            </p>
-            <b-input type="url" icon= "owl" v-model="link"></b-input>
-                <p class="control">
-                <button @click.prevent="emitDisagree" class="button is-dark">
-            <span></span><b-icon icon="thumb-down-outline"></b-icon><span></span>
-        </button>
-            </p>
-        </b-field>
-  </div>
-</section>
+  <section>
+    <b-tooltip label="Enter a url to continue the debate" always>
+    <div class="container">
+      
+      <b-field grouped group-multiline position="is-centered">
+        <p class="control">
+          <b-tooltip label="Post to agree" position="is-left">
+            <button @click.prevent="emitAgree" class="button is-warning">
+              <span></span>
+              <b-icon icon="thumb-up-outline"></b-icon>
+              <span></span>
+            </button>
+          </b-tooltip>
+        </p>
+        <b-input type="url" icon="owl" v-model="link"></b-input>
+        <p class="control">
+          <b-tooltip label="Post to disagree" position="is-right">
+            <button @click.prevent="emitDisagree" class="button is-dark">
+              <span></span>
+              <b-icon icon="thumb-down-outline"></b-icon>
+              <span></span>
+            </button>
+          </b-tooltip>
+        </p>
+      </b-field>
+     
+    </div>
+     </b-tooltip>
+  </section>
 </template>
 
 <script>

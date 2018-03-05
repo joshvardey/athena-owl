@@ -74,6 +74,20 @@ export default {
       .catch(errHandler);
   },
 
+  postVote(vote) {
+    return service
+      .post("/vote/" + vote.dabId, vote)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  // getVotes(dabId) {
+  //   return service
+  //     .get("/" + dabId)
+  //     .then(res => res.data)
+  //     .catch(errHandler);
+  // },
+
   logout() {
     delete axios.defaults.headers.common["Authorization"];
     localStorage.removeItem("user");

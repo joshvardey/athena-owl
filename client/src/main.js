@@ -4,6 +4,7 @@ import "buefy/lib/buefy.css";
 import "bulma-timeline/dist/bulma-timeline.min.css";
 import App from "./App.vue";
 import router from "./router";
+// import VueFrame from "vue-frame";
 
 Vue.use(Buefy);
 Vue.config.productionTip = false;

@@ -1,10 +1,13 @@
 <template>
-<section>
-  <Debate v-for="thread in threads" :threads="thread" :key="thread._id">
-    <DebateModal v-for="thread in threads" :threads="thread" :key="thread._id" :title="threads.title" :body="thread.title"/>
-  </Debate>
-    </section>
-</template> 
+  <section>
+    <div class="tile is-ancestor">
+      <div class="tile is-parent is-vertical">
+        <Debate v-for="thread in threads" :thread="thread" :key="thread._id" class="tile is-child">
+        </Debate>
+      </div>
+    </div>
+  </section>
+</template>
 
 <script>
 import Debate from "../components/Debate.vue";
@@ -16,7 +19,7 @@ export default {
       threads: {}
     };
   },
-  components: { Debate, DebateModal },
+  components: { Debate },
   created() {
     api.getThreads().then(threads => {
       this.threads = threads;

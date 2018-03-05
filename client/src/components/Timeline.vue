@@ -3,10 +3,6 @@
     <header class="timeline-header">
       <span class="tag is-medium is-primary">Latest</span>
     </header>
-  
-    <!-- <header class="timeline-header">
-      <span class="tag is-primary">2017</span>
-    </header> -->
 
     <slot/>
     
