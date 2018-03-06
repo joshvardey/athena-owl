@@ -21,7 +21,6 @@ router.post(
         return next(err);
       }
       const dabCreator = dab.creator;
-      debugger;
       const vote = new Vote({
         dab: dab._id,
         user: user,

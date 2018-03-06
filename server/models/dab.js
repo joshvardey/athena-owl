@@ -9,6 +9,7 @@ const dabSchema = new Schema({
   description: String,
   lang: String,
   creator: { type: Schema.Types.ObjectId, ref: "user" },
+  creatorPic: String,
   timestamp: { type: Date, default: Date.now },
   opinion: Boolean
   // true= for, against= false

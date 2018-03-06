@@ -66,6 +66,7 @@ router.post(
   (req, res, next) => {
     const { link, description, opinion } = req.body;
     const creator = req.user.id;
+    const creatorPic = req.user.picture;
 
     scrape(link)
       .then(metadata => {
@@ -74,6 +75,7 @@ router.post(
           link,
           opinion,
           creator,
+          creatorPic,
           ...extractedData
         });
         newDab.save((err, dab) => {
@@ -116,6 +118,7 @@ function extractMetadata(data) {
 }
 
 // delete dabs
+
 // delete thread
 
 module.exports = router;
