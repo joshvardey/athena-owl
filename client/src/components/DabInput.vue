@@ -1,6 +1,6 @@
 <template>
   <section>
-    <b-tooltip label="Enter a url to continue the debate" always>
+    <b-tooltip label="Enter a url to continue the debate" :class="{always: isActive}">
     <div class="container">
       
       <b-field grouped group-multiline position="is-centered">
@@ -34,17 +34,20 @@
 export default {
   data() {
     return {
-      link: ""
+      link: "",
+      isActive: true
     };
   },
   methods: {
     emitAgree() {
       this.$emit("dab-is-created", { link: this.link, opinion: true });
       this.link = "";
+      this.isActive = false;
     },
     emitDisagree() {
       this.$emit("dab-is-created", { link: this.link, opinion: false });
       this.link = "";
+      this.isActive = false;
     }
   }
 };

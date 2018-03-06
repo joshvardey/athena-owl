@@ -81,12 +81,12 @@ export default {
       .catch(errHandler);
   },
 
-  // getVotes(dabId) {
-  //   return service
-  //     .get("/" + dabId)
-  //     .then(res => res.data)
-  //     .catch(errHandler);
-  // },
+  userProfile(userId) {
+    return service
+      .get("/profile/" + userId)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
 
   logout() {
     delete axios.defaults.headers.common["Authorization"];

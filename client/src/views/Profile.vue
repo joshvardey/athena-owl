@@ -1,57 +1,70 @@
 <template>
-<section>
+  <section>
 
-<div class="box">
-  <article class="media">
-    <div class="media-left">
-      <figure class="image is-64x64">
-        <img :src="$root.user.picture">
-      </figure>
-    </div>
-    <div class="media-content">
-      <div class="content">
-        <p>
-          <strong>{{secret.username}}</strong> <small>{{secret.name}}</small> 
-          <br>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-        </p>
-      </div>
-      <nav class="level is-mobile">
-        <div class="level-left">
-          <a class="level-item">
-            <span class="icon is-small"><i class="fas fa-reply"></i></span>
-          </a>
-          <a class="level-item">
-            <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-          </a>
-          <a class="level-item">
-            <span class="icon is-small"><i class="fas fa-heart"></i></span>
-          </a>
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img :src="$root.user.picture">
+          </figure>
         </div>
-      </nav>
-    </div>
-  </article>
-</div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{secret.username}}</strong>
+              <small>{{secret.name}}</small>
+              <nav class="level">
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="heading">Tweets</p>
+                    <p class="title">3,456</p>
+                  </div>
+                </div>
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="heading">Following</p>
+                    <p class="title">123</p>
+                  </div>
+                </div>
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="heading">Followers</p>
+                    <p class="title">456K</p>
+                  </div>
+                </div>
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="heading">Likes</p>
+                    <p class="title">789</p>
+                  </div>
+                </div>
+              </nav>
+            </p>
+          </div>
 
-<p class="content">
-    <pre>{{ secret }}</pre>
-  </p>
-</section>
-  
+        </div>
+      </article>
+    </div>
+
+    <p class="content">
+      <pre>{{ secret }}</pre>
+    </p>
+  </section>
+
 </template>
 
 <script>
-import api from "../api";
-export default {
-  data() {
-    return {
-      secret: null
-    };
-  },
-  created() {
-    api.getSecret().then(secret => {
-      this.secret = secret;
-    });
-  }
-};
+  import api from "../api";
+  export default {
+    data() {
+      return {
+        secret: null
+      };
+    },
+    created() {
+      api.getSecret().then(secret => {
+        this.secret = secret;
+      });
+    }
+  };
 </script>

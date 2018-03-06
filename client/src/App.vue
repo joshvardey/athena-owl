@@ -56,4 +56,8 @@ $link-focus-border: $primary;
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+.footer {
+  padding: 1rem 1.5rem 1rem;
+}
 </style>
