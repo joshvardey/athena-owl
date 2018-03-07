@@ -1,0 +1,21 @@
+{
+  "name": "athena-owl",
+  "version": "1.0.0",
+  "description": "An owl-heavy site attempting to bring civilised debate back to the internet.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd server && npm install",
+    "start": "cd server && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshvardey/athena-owl.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshvardey/athena-owl/issues"
+  },
+  "homepage": "https://github.com/joshvardey/athena-owl#readme"
+}
