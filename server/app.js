@@ -52,12 +52,33 @@ passport.use(strategy);
 app.use("/api", require("./routes/auth"));
 app.use("/api/threads", require("./routes/threads"));
 app.use("/api/vote", require("./routes/votes"));
+app.use("/api/profile", require("./routes/profile"));
 
 app.get(
   "/api/secret",
   passport.authenticate("jwt", config.jwtSession),
   (req, res) => {
-    res.json(req.user);
+    console.log(req.user._id);
+    const profileId = req.user._id;
+
+    Promise.all([
+      User.findById(profileId),
+      Thread.find({ creator: profileId }),
+      Vote.find({ dabCreator: profileId }),
+      Dab.find({ creator: profileId })
+    ]).then(([user, threads, votes, dabs]) => {
+      user = user.toObject();
+      user.threads = threads;
+      user.votes = votes;
+      user.dabs = dabs.map(dab => dab.toObject());
+      return Promise.all(
+        user.dabs.map(dab => {
+          return Vote.find({ dab: dab._id }).then(votes => {
+            dab.votes = votes;
+          });
+        })
+      ).then(() => res.json(user));
+    });
   }
 );
 
