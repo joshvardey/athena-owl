@@ -24,15 +24,6 @@ export default {
     api.getThreads().then(threads => {
       this.threads = threads;
     });
-    api
-      .userProfile(this.$route.params.id)
-      .then(profile => {
-        this.profile = profile;
-        console.log(profile);
-      })
-      .catch(err => {
-        this.error = err;
-      });
   }
 };
 </script>

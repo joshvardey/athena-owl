@@ -39,13 +39,12 @@ export default {
     if (!this.dab.votes) {
       return;
     } else {
-      this.dab.votes.forEach(dab => {
-        for (votes in dab)
-          if (vote.opinion === true) {
-            this.votesUp.push(vote);
-          } else {
-            this.votesDown.push(vote);
-          }
+      this.dab.votes.forEach(vote => {
+        if (vote.opinion === true) {
+          this.votesUp.push(vote);
+        } else {
+          this.votesDown.push(vote);
+        }
       });
     }
   },

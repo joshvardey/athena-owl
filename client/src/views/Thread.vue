@@ -49,7 +49,7 @@ export default {
       if (!this.thread.dabs) {
         return;
       }
-      return this.thread.dabs.reverse();
+      return this.thread.dabs.slice().reverse();
     }
   },
   methods: {
@@ -57,7 +57,7 @@ export default {
       this.dabErr = null;
       api
         .postDab(this.thread._id, dab)
-        .then(dab => this.thread.dabs.unshift(dab))
+        .then(dab => this.thread.dabs.push(dab))
         .catch(err => {
           this.dabErr = err;
         });

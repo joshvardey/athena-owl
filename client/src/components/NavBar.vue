@@ -52,7 +52,7 @@
         </div>
         <div class="field is-grouped" v-else>
           <p class="control">
-            <router-link class="navbar-item" to="/profile">My profile</router-link>
+            <router-link class="navbar-item" :to="'/profile/' + $root.user.id">My profile</router-link>
           </p>
           <p class="control">
             <a

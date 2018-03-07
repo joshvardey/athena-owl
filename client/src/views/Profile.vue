@@ -58,7 +58,7 @@
   export default {
     data() {
       return {
-        profile: null,
+        profile: {},
       };
     },
     created() {

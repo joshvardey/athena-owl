@@ -7,7 +7,6 @@ import Login from "./views/Login.vue";
 import Profile from "./views/Profile.vue";
 import Thread from "./views/Thread.vue";
 import SeeAll from "./views/SeeAll.vue";
-import MyProfile from "./views/MyProfile.vue";
 
 Vue.use(Router);
 
@@ -31,13 +30,6 @@ export default new Router({
     {
       path: "/login",
       component: Login
-    },
-    {
-      path: "/profile",
-      component: MyProfile,
-      meta: {
-        requiresAuth: true
-      }
     },
     {
       path: "/profile/:id",

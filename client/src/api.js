@@ -88,6 +88,20 @@ export default {
       .catch(errHandler);
   },
 
+  deleteDab(user, dab) {
+    return service
+      .delete("/" + user + "/" + dab)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteThread(user, thread) {
+    return service
+      .delete("/" + user + "/" + thread)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   logout() {
     delete axios.defaults.headers.common["Authorization"];
     localStorage.removeItem("user");
