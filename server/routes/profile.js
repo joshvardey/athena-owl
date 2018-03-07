@@ -32,4 +32,42 @@ router.get("/:id", (req, res, next) => {
   });
 });
 
+// delete dabs
+
+router.delete("/:userId/:dabId", (req, res, next) => {
+  const user = req.params.userId;
+  const dab = req.params.dabId;
+  Dab.findById(
+    dab,
+    (err,
+    deleteDab => {
+      if (user === deleteDab.creator.toString()) {
+        Dab.findByIdAndRemove(dab, err => {
+          if (err) next(err);
+          res.json("deleted");
+        });
+      } else res.json("unauthorised");
+    })
+  );
+});
+
+// delete threads
+
+router.delete("/:userId/:threadId", (req, res, next) => {
+  const user = req.params.userId;
+  const thread = req.params.threadId;
+  Thread.findById(
+    thread,
+    (err,
+    deleteThread => {
+      if (user === deleteThread.creator.toString()) {
+        Thread.findByIdAndRemove(thread, err => {
+          if (err) next(err);
+          res.json("deleted");
+        });
+      } else res.json("unauthorised");
+    })
+  );
+});
+
 module.exports = router;

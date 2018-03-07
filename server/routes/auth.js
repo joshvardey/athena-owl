@@ -52,7 +52,8 @@ router.post("/login", (req, res, next) => {
         res.json({
           token,
           name: user.name,
-          picture: user.picture
+          picture: user.picture,
+          id: user._id
         });
       }
     });
