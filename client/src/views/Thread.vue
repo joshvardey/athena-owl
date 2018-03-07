@@ -20,7 +20,7 @@
     <DabInput @dab-is-created="dabInput"></DabInput>
     <br>
     <Timeline v-if="thread">
-      <Dab v-for="dab in reversedDabs" :dab="dab" :key="dab._id" @voted="voteAction"/>
+      <Dab v-for="dab in reversedDabs" :dab="dab" :key="dab._id" @voted="voteAction" />
     </Timeline>
   </div>
 </template>
@@ -65,8 +65,15 @@ export default {
     voteAction(vote) {
       this.voteErr = null;
       api.postVote(vote).catch(err => {
-        this.voteErr = err;
-        console.log(err);
+        this.danger();
+      });
+    },
+    danger() {
+      this.$toast.open({
+        duration: 2000,
+        message: `You have already voted on this`,
+        position: "is-bottom",
+        type: "is-primary"
       });
     }
   }
