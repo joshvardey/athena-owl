@@ -117,8 +117,4 @@ function extractMetadata(data) {
   return ret;
 }
 
-// delete dabs
-
-// delete thread
-
 module.exports = router;
