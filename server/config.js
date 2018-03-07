@@ -2,8 +2,8 @@ const cloudinary = require("cloudinary");
 
 cloudinary.config({
   cloud_name: "jvards",
-  api_key: "176625832644176",
-  api_secret: "9y_MBWd1sI3CLIxaBVTbo8gBtIY"
+  api_key: "792719639947119",
+  api_secret: "PG5QUjKI7q_w96Pn0LDErTSE3Q4"
 });
 
 module.exports = {

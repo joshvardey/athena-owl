@@ -6,24 +6,18 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-mongoose.connect("mongodb://localhost/athena");
+const history = require("express-history-api-fallback");
+
+require("dotenv").config();
+mongoose.connect(process.env.MONGODB_URI);
 
 const passport = require("passport");
 const User = require("./models/user");
 const config = require("./config");
 const { Strategy, ExtractJwt } = require("passport-jwt");
 
-// var index = require("./routes/index");
-// var users = require("./routes/users");
-
 var app = express();
 
-// view engine setup
-// app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "ejs");
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(cors());
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -48,7 +42,6 @@ const strategy = new Strategy(
 );
 
 passport.use(strategy);
-// app.use("/", require("./routes/index"));
 app.use("/api", require("./routes/auth"));
 app.use("/api/threads", require("./routes/threads"));
 app.use("/api/vote", require("./routes/votes"));
@@ -82,11 +75,9 @@ app.get(
   }
 );
 
-// app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, "public")));
-
-// app.use("/", index);
-// app.use("/users", users);
+const clientRoot = path.join(__dirname, "../client/dist");
+app.use("/", express.static(clientRoot));
+app.use(history("index.html", { root: clientRoot }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
