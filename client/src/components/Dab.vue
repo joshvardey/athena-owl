@@ -1,7 +1,7 @@
 <template>
   <div :class="{'timeline-is-left': dab.opinion}" class="timeline-item is-warning">
     <div class="timeline-marker is-warning is-image is-32x32">
-      <img :src="dab.creatorPic" @click="profileHandler">
+      <router-link :to="'/profile/' + dab.creator"><img :src="dab.creatorPic"></router-link>
     </div>
     <div class="timeline-content">
       <p class="heading">{{dab.title}}</p>
@@ -39,12 +39,13 @@ export default {
     if (!this.dab.votes) {
       return;
     } else {
-      this.dab.votes.forEach(vote => {
-        if (vote.opinion === true) {
-          this.votesUp.push(vote);
-        } else {
-          this.votesDown.push(vote);
-        }
+      this.dab.votes.forEach(dab => {
+        for (votes in dab)
+          if (vote.opinion === true) {
+            this.votesUp.push(vote);
+          } else {
+            this.votesDown.push(vote);
+          }
       });
     }
   },

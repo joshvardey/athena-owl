@@ -20,69 +20,64 @@
     <DabInput @dab-is-created="dabInput"></DabInput>
     <br>
     <Timeline v-if="thread">
-      <Dab v-for="dab in reversedDabs" :dab="dab" :key="dab._id" @voted="voteAction" @profile="goToProfile" />
+      <Dab v-for="dab in reversedDabs" :dab="dab" :key="dab._id" @voted="voteAction"/>
     </Timeline>
   </div>
 </template>
 
 <script>
-  import Timeline from "../components/Timeline";
-  import Dab from "../components/Dab";
-  import DabInput from "../components/DabInput";
-  import api from "../api";
-  export default {
-    data() {
-      return {
-        thread: {},
-        dabErr: null,
-        voteErr: null
-      };
-    },
-    created() {
-      api.getOneThread(this.$route.params.id).then(thread => {
-        this.thread = thread;
-      });
-    },
-    components: { Timeline, DabInput, Dab },
-    computed: {
-      reversedDabs() {
-        if (!this.thread.dabs) {
-          return;
-        }
-        return this.thread.dabs.reverse();
+import Timeline from "../components/Timeline";
+import Dab from "../components/Dab";
+import DabInput from "../components/DabInput";
+import api from "../api";
+export default {
+  data() {
+    return {
+      thread: {},
+      dabErr: null,
+      voteErr: null
+    };
+  },
+  created() {
+    api.getOneThread(this.$route.params.id).then(thread => {
+      this.thread = thread;
+    });
+  },
+  components: { Timeline, DabInput, Dab },
+  computed: {
+    reversedDabs() {
+      if (!this.thread.dabs) {
+        return;
       }
-    },
-    methods: {
-      dabInput(dab) {
-        this.dabErr = null;
-        api
-          .postDab(this.thread._id, dab)
-          .then(dab => this.thread.dabs.unshift(dab))
-          .catch(err => {
-            this.dabErr = err;
-          });
-      },
-      voteAction(vote) {
-        this.voteErr = null;
-        api.postVote(vote).catch(err => {
-          this.voteErr = err;
-          console.log(err);
-        });
-      },
-      goToProfile(userPic) {
-        api.userProfile(userPic).catch(err => {
-          this.error = err;
-        });
-      }
+      return this.thread.dabs.reverse();
     }
-  };
+  },
+  methods: {
+    dabInput(dab) {
+      this.dabErr = null;
+      api
+        .postDab(this.thread._id, dab)
+        .then(dab => this.thread.dabs.unshift(dab))
+        .catch(err => {
+          this.dabErr = err;
+        });
+    },
+    voteAction(vote) {
+      this.voteErr = null;
+      api.postVote(vote).catch(err => {
+        this.voteErr = err;
+        console.log(err);
+      });
+    }
+  }
+};
 </script>
 <style>
-  .hero-body {
-    padding: 0 1.5rem 3rem;
-  }
+.hero-body {
+  padding: 0 1.5rem 3rem;
+}
 
-  .divs {
-    text-align: center;
-  }
+.divs {
+  text-align: center;
+}
 </style>
