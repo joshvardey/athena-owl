@@ -89,7 +89,9 @@ router.post(
               if (err) {
                 return err;
               }
-              res.json(dab);
+              const data = dab.toObject();
+              data.votes = [];
+              res.json(data);
             }
           );
         });

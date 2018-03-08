@@ -8,7 +8,7 @@ const dabSchema = new Schema({
   sourceName: String,
   description: String,
   lang: String,
-  creator: { type: Schema.Types.ObjectId, ref: "user" },
+  creator: { type: Schema.Types.ObjectId, ref: "User" },
   creatorPic: String,
   timestamp: { type: Date, default: Date.now },
   opinion: Boolean
