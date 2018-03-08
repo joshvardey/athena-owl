@@ -1,6 +1,6 @@
 <template>
   <section>
-    <b-tooltip label="Enter a url to continue the debate" :class="{always: isActive}">
+    
     <div class="container">
       
       <b-field grouped group-multiline position="is-centered">
@@ -13,7 +13,9 @@
             </button>
           </b-tooltip>
         </p>
+        <b-tooltip label="Enter a url to continue the debate" :class="{always: isActive}">
         <b-input type="url" icon="owl" v-model="link"></b-input>
+        </b-tooltip>
         <p class="control">
           <b-tooltip label="Post to disagree" position="is-right">
             <button @click.prevent="emitDisagree" class="button is-dark">
@@ -26,7 +28,7 @@
       </b-field>
      
     </div>
-     </b-tooltip>
+     
   </section>
 </template>
 

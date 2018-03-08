@@ -10,20 +10,19 @@
 </template>
 
 <script>
-import Debate from "../components/Debate.vue";
-import DebateModal from "../components/DebateModal.vue";
-import api from "../api";
-export default {
-  data() {
-    return {
-      threads: {}
-    };
-  },
-  components: { Debate },
-  created() {
-    api.getThreads().then(threads => {
-      this.threads = threads;
-    });
-  }
-};
+  import Debate from "../components/Debate.vue";
+  import api from "../api";
+  export default {
+    data() {
+      return {
+        threads: {}
+      };
+    },
+    components: { Debate },
+    created() {
+      api.getThreads().then(threads => {
+        this.threads = threads;
+      });
+    }
+  };
 </script>

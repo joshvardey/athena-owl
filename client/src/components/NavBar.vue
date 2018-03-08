@@ -27,7 +27,7 @@
         class="navbar-item" to="/all-threads"
         @click.native="isActive = false"
       >
-        See all
+        See all threads
       </router-link>
     </div>
 

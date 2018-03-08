@@ -64,9 +64,14 @@ export default {
     },
     voteAction(vote) {
       this.voteErr = null;
-      api.postVote(vote).catch(err => {
-        this.danger();
-      });
+      api
+        .postVote(vote)
+        .then(vote => {
+          this.thread.dabs.find(dab => dab._id === vote.dab).votes.push(vote);
+        })
+        .catch(err => {
+          this.danger();
+        });
     },
     danger() {
       this.$toast.open({

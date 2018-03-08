@@ -88,16 +88,16 @@ export default {
       .catch(errHandler);
   },
 
-  deleteDab(user, dab) {
+  deleteDab(dab) {
     return service
-      .delete("/" + user + "/" + dab)
+      .delete("/profile/" + dab)
       .then(res => res.data)
       .catch(errHandler);
   },
 
-  deleteThread(user, thread) {
+  deleteThread(thread) {
     return service
-      .delete("/" + user + "/" + thread)
+      .delete("/profile/" + thread)
       .then(res => res.data)
       .catch(errHandler);
   },
