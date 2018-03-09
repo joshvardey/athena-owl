@@ -35,11 +35,12 @@
           confirmText: 'Delete Thread',
           type: 'is-danger',
           hasIcon: true,
-          onConfirm: () => this.$toast.open('Thread deleted!')
+          onConfirm: () => this.deleteT()
         })
       },
       deleteT() {
         this.$emit("deletethread", { threadId: this.thread._id });
+        this.$toast.open('Thread deleted!')
       }
     }
   }

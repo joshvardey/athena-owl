@@ -14,16 +14,16 @@
         <section>
           <div class="control">
             <b-taglist attached>
-              <b-tag class="is-focussed is-small" :rounded="true" @click.prevent.native="emitUpvote">
-                <b-icon icon="thumb-up-outline" type="is-primary" size="is-small">
+              <b-tag class="is-focussed is-small" :type="upVoteType" :rounded="true" @click.prevent.native="emitUpvote">
+                <b-icon icon="thumb-up-outline" type="is-dark" size="is-small">
                 </b-icon>
               </b-tag>
-              <b-tag>{{votesUp}}</b-tag>
-              <b-tag class="is-focussed is-small" @click.prevent.native="emitDownvote">
-                <b-icon icon="thumb-down-outline" type="is-dark" size="is-small">
+              <b-tag :type="upVoteType">{{votesUp}}</b-tag>
+              <b-tag class="is-focussed is-small" :type="downVoteType" @click.prevent.native="emitDownvote">
+                <b-icon icon="thumb-down-outline" size="is-small">
                 </b-icon>
               </b-tag>
-              <b-tag :rounded="true">{{votesDown}}</b-tag>
+              <b-tag :rounded="true" :type="downVoteType">{{votesDown}}</b-tag>
             </b-taglist>
           </div>
         </section>
@@ -36,45 +36,61 @@
 
 
 <script>
-  import api from "../api";
-  export default {
-    data() {
-      return {
-        enoughVotes: true,
-        rounded: true
-      };
-    },
+import api from "../api";
+export default {
+  data() {
+    return {
+      enoughVotes: true,
+      rounded: true
+    };
+  },
 
-    props: {
-      dab: Object
-    },
+  props: {
+    dab: Object
+  },
 
-    computed: {
-      votesUp() {
-        return this.dab.votes.filter(vote => vote.opinion).length;
-      },
-      votesDown() {
-        return this.dab.votes.filter(vote => !vote.opinion).length;
-      }
+  computed: {
+    votesUp() {
+      return this.dab.votes.filter(vote => vote.opinion).length;
     },
-
-    methods: {
-      emitUpvote() {
-        this.$emit("voted", { dabId: this.dab._id, opinion: true });
-      },
-      emitDownvote() {
-        this.$emit("voted", { dabId: this.dab._id, opinion: false });
-      },
-      postViewer() {
-        if (this.votesUp < 5 && this.votesDown > 30) {
-          this.enoughVotes = false;
-        }
-      },
-      profileHandler() {
-        this.$emit("profile", { userPic: this.dab.creator });
-      }
+    votesDown() {
+      return this.dab.votes.filter(vote => !vote.opinion).length;
+    },
+    downVoteType() {
+      debugger;
+      return this.dab.votes
+        .filter(vote => !vote.opinion)
+        .find(voteDown => voteDown.user === this.$root.user.id)
+        ? "is-dark"
+        : "";
+    },
+    upVoteType() {
+      debugger;
+      return this.dab.votes
+        .filter(vote => vote.opinion)
+        .find(voteUp => voteUp.user === this.$root.user.id)
+        ? "is-warning"
+        : "";
     }
-  };
+  },
+
+  methods: {
+    emitUpvote() {
+      this.$emit("voted", { dabId: this.dab._id, opinion: true });
+    },
+    emitDownvote() {
+      this.$emit("voted", { dabId: this.dab._id, opinion: false });
+    },
+    postViewer() {
+      if (this.votesUp < 5 && this.votesDown > 30) {
+        this.enoughVotes = false;
+      }
+    },
+    profileHandler() {
+      this.$emit("profile", { userPic: this.dab.creator });
+    }
+  }
+};
 // v-show="enoughVotes"
 // <div class="code"><p v-show="!enoughVotes">This post has not received enough votes. Click to reveal.</p></div>
 // <button @click="!enoughVotes = enoughVotes"

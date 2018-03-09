@@ -13,9 +13,11 @@
             </button>
           </b-tooltip>
         </p>
+        <p class="control">
         <b-tooltip label="Enter a url to continue the debate" :class="{always: isActive}">
         <b-input type="url" icon="owl" v-model="link"></b-input>
         </b-tooltip>
+        </p>
         <p class="control">
           <b-tooltip label="Post to disagree" position="is-right">
             <button @click.prevent="emitDisagree" class="button is-dark">

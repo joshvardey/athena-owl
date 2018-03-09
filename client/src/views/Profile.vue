@@ -67,7 +67,7 @@
               Threads started by {{profile.username}}
             </h1>
           </div>
-          <b-pagination :current.sync="currentThreads" :perPage="perPageThreads" :total="threads.length">
+          <b-pagination :current.sync="currentThreads" :perPage="perPageThreads" :total="threads.length" @deletethread="deleteThread">
           </b-pagination>
           <ProfileThreads v-for="thread in threadSlicer" :thread="thread" :key="thread._id"></ProfileThreads>
         </div>
@@ -136,13 +136,13 @@
           this.error = err;
         })
       },
-      // deleteThread(thread) {
-      //   const index = this.threads.map(t => t._id).indexOf(thread.threadId)
-      //   this.threads.splice(index, 1)
-      //   api.deleteThread(thread.threadId).then(() => console.log('delete thread')).catch(err => {
-      //     this.error = err;
-      //   })
-      // }
+      deleteThread(thread) {
+        const index = this.threads.map(t => t._id).indexOf(thread.threadId)
+        this.threads.splice(index, 1)
+        api.deleteThread(thread.threadId).then(() => console.log('delete thread')).catch(err => {
+          this.error = err;
+        })
+      }
     },
     computed: {
       upVoteCounter() {

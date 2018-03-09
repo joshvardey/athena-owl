@@ -13,7 +13,7 @@
             </b-input>
           </b-field>
           <b-field label="Description">
-              <b-input maxlength="200" type="textarea" v-model="threadDescription"></b-input>
+              <b-input placeholder="Elaborate on your proposed topic" size="is-large" maxlength="200" type="textarea" v-model="threadDescription"></b-input>
             </b-field>
           <b-field label="Enter some tags">
             <b-taginput v-model="tags" type="is-dark" :data="filteredTags" autocomplete :allowNew="allowNew" field="tags" icon="label"
