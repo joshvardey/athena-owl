@@ -53,22 +53,36 @@ router.delete(
 
 // delete threads
 
-router.delete(
-  "/:threadId",
-  passport.authenticate("jwt", config.jwtSession),
-  (req, res, next) => {
-    const user = req.user._id;
-    const thread = req.params.threadId;
-    console.log(thread);
-    Thread.findById(thread, (err, deleteThread) => {
-      if (user === deleteThread.creator.toString()) {
-        Thread.findByIdAndRemove(thread, err => {
-          if (err) next(err);
-          res.json("deleted");
-        });
-      } else res.json("unauthorised");
-    });
-  }
-);
+// router.delete(
+//   "/:threadId",
+//   passport.authenticate("jwt", config.jwtSession),
+//   (req, res, next) => {
+//     const user = req.user._id;
+//     const thread = req.params.threadId;
+//     Thread.findById(thread, (err, threadInfo) => {
+//       if (user === threadInfo.creator.toString()) {
+//         threadInfo.dabs.map(dabId => {
+//           Vote.find({dab: dabId})
+//         .then(votes => votes.deleteMany({}).then(dabId =>{
+//           Dab.findById(dabId, (err, dab) => {
+//             dab.deleteMany({})
+//           }).then(thread => {
+//             Thread.findByIdAndRemove(threadInfo._id, err =>{
+//               if (err) next(err);
+//           res.json("deleted");
+//             })
+//           })
+//         })
+//       )
+//     })}})})
+
+//         Thread.findByIdAndRemove(thread, err => {
+//           if (err) next(err);
+//           res.json("deleted");
+//         });
+//       } else res.json("unauthorised");
+//     });
+//   }
+// );
 
 module.exports = router;
