@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/joshvardey/athena-owl/issues"
   },
-  "homepage": "https://github.com/joshvardey/athena-owl#readme"
+  "homepage": "https://github.com/joshvardey/athena-owl#readme",
+  "dependencies": {
+    "hoek": "^5.0.3"
+  }
 }
